@@ -2,7 +2,7 @@ import {build} from 'esbuild';
 import {mkdir,writeFile,copyFile,cp,rm} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
 await mkdir('dist/assets',{recursive:true});
-await cp('public/assets','dist/assets',{recursive:true});
+await cp('public','dist',{recursive:true});
 await build({entryPoints:['src/main.tsx'],bundle:true,minify:true,outfile:'dist/assets/app.js',jsx:'automatic',target:'es2020'});
 await copyFile('src/style.css','dist/assets/style.css');
 await build({entryPoints:['src/render.tsx'],bundle:true,platform:'node',format:'esm',packages:'external',outfile:'.ssr/render.mjs',jsx:'automatic'});
